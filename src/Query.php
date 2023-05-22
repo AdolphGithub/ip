@@ -38,7 +38,7 @@ class Query
         if(!$info) {
             return false;
         }
-        var_dump($info);
+
         // 开始解析地址信息.
         return Area::format($info['dataA'], $info['dataB']);
     }
