@@ -1,0 +1,22 @@
+{
+    "name": "lucia/ip",
+    "description": "IP",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Lucia\\ip\\": "src/",
+            "Lucia\\ip\\format\\": "src/format"
+        }
+    },
+    "authors": [
+        {
+            "name": "Adolph",
+            "email": "yuan13036395508@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.0"
+    }
+}
