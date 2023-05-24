@@ -13,19 +13,22 @@ class Query
     private $lastRecord; // 最后一条记录的偏移地址
     private $recordNum; // 总记录条数
 
-    private function __construct()
+    private function __construct($file = null)
     {
-        $file = __DIR__ . '/db/qqwry.dat';
+        if(!$file) {
+            $file = __DIR__ . '/db/qqwry.dat';
+        }
+
         $this->fp = fopen($file, 'rb');
         $this->firstRecord = $this->read4byte();
         $this->lastRecord  = $this->read4byte();
         $this->recordNum = ($this->lastRecord - $this->firstRecord) / 7; // 每条索引长度为7字节
     }
 
-    private static function getInstance()
+    private static function getInstance($file)
     {
         if(!self::$instance) {
-            self::$instance = new self();
+            self::$instance = new self($file);
         }
 
         return self::$instance;
