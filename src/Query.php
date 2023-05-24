@@ -25,7 +25,7 @@ class Query
         $this->recordNum = ($this->lastRecord - $this->firstRecord) / 7; // 每条索引长度为7字节
     }
 
-    private static function getInstance($file)
+    private static function getInstance($file = null)
     {
         if(!self::$instance) {
             self::$instance = new self($file);
@@ -34,9 +34,9 @@ class Query
         return self::$instance;
     }
 
-    public static function find($ip)
+    public static function find($ip, $db = null)
     {
-        $info = self::getInstance()->detail($ip);
+        $info = self::getInstance($db)->detail($ip);
         // 没有查到或不是一个标准的IP地址.
         if(!$info) {
             return false;
