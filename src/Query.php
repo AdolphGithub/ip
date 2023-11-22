@@ -130,7 +130,7 @@ class Query
             $mid = floor(($down + $up) / 2); // 计算二分点
             fseek($this->fp, $this->firstRecord + $mid * 7);
             $beginip = strrev(fread($this->fp, 4)); // 获取二分区域的下边界
-            if ($ip <= $beginip) { // 目标IP在二分区域以下
+            if ($ip < $beginip) { // 目标IP在二分区域以下
                 $up = $mid - 1; // 缩小搜索的上边界
             } else {
                 fseek($this->fp, $this->read3byte());
