@@ -265,7 +265,6 @@ class Area
 
     private static function matchCity($ret, $country, $area, $citys = []) {
         $iso3166 = Iso3166::init();
-
         if(count($citys)) {
             foreach($citys as $city) {
                 if(strpos($area, $city) !== false) {
@@ -346,9 +345,9 @@ class Area
 
         if(isset($iso1366[$country])) {
             $regions = $iso1366[$country];
-
             foreach ($regions as $region => $v) {
-                if($region !== $country && strpos($area, $region) !== false) {
+                // 这里会出现一个特殊的情况. 天津省河北区. 这个搞毛线哦. 得改掉. 来了个河北省.
+                if($region !== $country && strpos($area, $region) !== false && strpos($area, $region . '区') === false) {
                     $ret['region_name'] = $region;
                     $citys = $v;
                     break;
